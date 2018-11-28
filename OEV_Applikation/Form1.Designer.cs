@@ -36,6 +36,10 @@
             this.btnSuchen = new System.Windows.Forms.Button();
             this.btnAuswahlDelete = new System.Windows.Forms.Button();
             this.txtEndstation = new System.Windows.Forms.TextBox();
+            this.lstAusgabe = new System.Windows.Forms.ListBox();
+            this.lstStartstation = new System.Windows.Forms.ListBox();
+            this.lstEndstation = new System.Windows.Forms.ListBox();
+            this.btnVorschlaege = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtStartstation
@@ -65,7 +69,7 @@
             // 
             // dtpDatum
             // 
-            this.dtpDatum.Location = new System.Drawing.Point(64, 138);
+            this.dtpDatum.Location = new System.Drawing.Point(61, 268);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(267, 22);
             this.dtpDatum.TabIndex = 4;
@@ -73,7 +77,7 @@
             // LbDatum
             // 
             this.LbDatum.AutoSize = true;
-            this.LbDatum.Location = new System.Drawing.Point(67, 115);
+            this.LbDatum.Location = new System.Drawing.Point(64, 245);
             this.LbDatum.Name = "LbDatum";
             this.LbDatum.Size = new System.Drawing.Size(49, 17);
             this.LbDatum.TabIndex = 5;
@@ -81,7 +85,7 @@
             // 
             // btnSuchen
             // 
-            this.btnSuchen.Location = new System.Drawing.Point(398, 127);
+            this.btnSuchen.Location = new System.Drawing.Point(395, 257);
             this.btnSuchen.Name = "btnSuchen";
             this.btnSuchen.Size = new System.Drawing.Size(79, 33);
             this.btnSuchen.TabIndex = 6;
@@ -91,12 +95,13 @@
             // 
             // btnAuswahlDelete
             // 
-            this.btnAuswahlDelete.Location = new System.Drawing.Point(495, 137);
+            this.btnAuswahlDelete.Location = new System.Drawing.Point(492, 267);
             this.btnAuswahlDelete.Name = "btnAuswahlDelete";
             this.btnAuswahlDelete.Size = new System.Drawing.Size(141, 23);
             this.btnAuswahlDelete.TabIndex = 7;
             this.btnAuswahlDelete.Text = "Auswahl entfernen";
             this.btnAuswahlDelete.UseVisualStyleBackColor = true;
+            this.btnAuswahlDelete.Click += new System.EventHandler(this.btnAuswahlDelete_Click);
             // 
             // txtEndstation
             // 
@@ -105,12 +110,55 @@
             this.txtEndstation.Size = new System.Drawing.Size(267, 22);
             this.txtEndstation.TabIndex = 0;
             // 
+            // lstAusgabe
+            // 
+            this.lstAusgabe.FormattingEnabled = true;
+            this.lstAusgabe.ItemHeight = 16;
+            this.lstAusgabe.Location = new System.Drawing.Point(67, 323);
+            this.lstAusgabe.Name = "lstAusgabe";
+            this.lstAusgabe.Size = new System.Drawing.Size(566, 228);
+            this.lstAusgabe.TabIndex = 8;
+            // 
+            // lstStartstation
+            // 
+            this.lstStartstation.FormattingEnabled = true;
+            this.lstStartstation.ItemHeight = 16;
+            this.lstStartstation.Location = new System.Drawing.Point(64, 96);
+            this.lstStartstation.Name = "lstStartstation";
+            this.lstStartstation.Size = new System.Drawing.Size(264, 116);
+            this.lstStartstation.TabIndex = 9;
+            this.lstStartstation.Click += new System.EventHandler(this.lstStartstation_Click);
+            // 
+            // lstEndstation
+            // 
+            this.lstEndstation.FormattingEnabled = true;
+            this.lstEndstation.ItemHeight = 16;
+            this.lstEndstation.Location = new System.Drawing.Point(369, 96);
+            this.lstEndstation.Name = "lstEndstation";
+            this.lstEndstation.Size = new System.Drawing.Size(267, 116);
+            this.lstEndstation.TabIndex = 10;
+            this.lstEndstation.Click += new System.EventHandler(this.lstEndstation_Click);
+            // 
+            // btnVorschlaege
+            // 
+            this.btnVorschlaege.Location = new System.Drawing.Point(642, 121);
+            this.btnVorschlaege.Name = "btnVorschlaege";
+            this.btnVorschlaege.Size = new System.Drawing.Size(115, 51);
+            this.btnVorschlaege.TabIndex = 11;
+            this.btnVorschlaege.Text = "Vorschläge Anzeigen";
+            this.btnVorschlaege.UseVisualStyleBackColor = true;
+            this.btnVorschlaege.Click += new System.EventHandler(this.btnVorschlaege_Click);
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnSuchen;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 563);
+            this.Controls.Add(this.btnVorschlaege);
+            this.Controls.Add(this.lstEndstation);
+            this.Controls.Add(this.lstStartstation);
+            this.Controls.Add(this.lstAusgabe);
             this.Controls.Add(this.btnAuswahlDelete);
             this.Controls.Add(this.btnSuchen);
             this.Controls.Add(this.LbDatum);
@@ -136,6 +184,10 @@
         private System.Windows.Forms.Button btnSuchen;
         private System.Windows.Forms.Button btnAuswahlDelete;
         private System.Windows.Forms.TextBox txtEndstation;
+        private System.Windows.Forms.ListBox lstAusgabe;
+        private System.Windows.Forms.ListBox lstStartstation;
+        private System.Windows.Forms.ListBox lstEndstation;
+        private System.Windows.Forms.Button btnVorschlaege;
     }
 }
 
