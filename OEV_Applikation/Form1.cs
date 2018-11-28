@@ -25,15 +25,29 @@ namespace OEV_Applikation
 
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
 
-            List<SwissTransport.Station> b = StationConnetions.GetStations(startStation).StationList;
-            List<SwissTransport.Station> c = StationConnetions.GetStations(endStation).StationList;
+            List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
+            List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
 
-
-
-            foreach (SwissTransport.Station station in b)
+            List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnections(startStation, endStation).ConnectionList;
+            if (startEndConnection != null)
             {
-                lstAusgabe.Items.Add(station.Name);
+                foreach (SwissTransport.Connection connection in startEndConnection)
+                {
+                    lstAusgabe.Items.Add(connection.From.Departure + connection.To.Arrival + "\t" + connection.To.Platform);
+
+                }
+
             }
+
+
+
+
+
+
+            //foreach (SwissTransport.Station station in start)
+            //{
+            //    lstAusgabe.Items.Add(station.Name);
+            //}
 
 
 
@@ -53,18 +67,18 @@ namespace OEV_Applikation
 
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
 
-            List<SwissTransport.Station> b = StationConnetions.GetStations(startStation).StationList;
-            List<SwissTransport.Station> c = StationConnetions.GetStations(endStation).StationList;
+            List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
+            List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
 
             lstStartstation.Items.Clear();
             lstEndstation.Items.Clear();
 
-            foreach (SwissTransport.Station station in b)
+            foreach (SwissTransport.Station station in start)
             {
                 lstStartstation.Items.Add(station.Name);
             }
 
-            foreach (SwissTransport.Station station in c)
+            foreach (SwissTransport.Station station in end)
             {
                 lstEndstation.Items.Add(station.Name);
             }
