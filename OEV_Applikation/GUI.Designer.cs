@@ -224,9 +224,9 @@
             this.lbTime.AutoSize = true;
             this.lbTime.Location = new System.Drawing.Point(342, 232);
             this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(85, 17);
+            this.lbTime.Size = new System.Drawing.Size(83, 17);
             this.lbTime.TabIndex = 13;
-            this.lbTime.Text = "Ankunftszeit";
+            this.lbTime.Text = "Abfahrtszeit";
             // 
             // Form1
             // 
