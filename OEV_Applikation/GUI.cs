@@ -17,11 +17,11 @@ namespace OEV_Applikation
             InitializeComponent();
         }
 
-        private void btnSuchen_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
-            string datum = dtpDatum.Value.ToString();
+            string datum = dtpDate.Value.ToString();
 
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
 
@@ -29,38 +29,23 @@ namespace OEV_Applikation
             List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
 
             List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnections(startStation, endStation).ConnectionList;
+
+            dgvOutput.Rows.Clear();
+
             if (startEndConnection != null)
             {
                 foreach (SwissTransport.Connection connection in startEndConnection)
                 {
-                    lstAusgabe.Items.Add(connection.From.Departure + connection.To.Arrival + "\t" + connection.To.Platform);
+                    dgvOutput.Rows.Add(connection.From.Station.Name, TimeStampToTime(connection.From.DepartureTimestamp), 
+                        connection.From.Platform, TimeStampToTime(connection.To.ArrivalTimestamp));
 
                 }
 
             }
 
-
-
-
-
-
-            //foreach (SwissTransport.Station station in start)
-            //{
-            //    lstAusgabe.Items.Add(station.Name);
-            //}
-
-
-
-
-
-            //MessageBox.Show(Convert.ToString(StationConnetions.GetStations(startStation)));
-            //lstAusgabe.Items.Add
-
-            //MessageBox.Show(datum);
-
         }
 
-        private void btnVorschlaege_Click(object sender, EventArgs e)
+        private void btnSuggestion_Click(object sender, EventArgs e)
         {
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
@@ -102,14 +87,25 @@ namespace OEV_Applikation
             }
         }
 
-        private void btnAuswahlDelete_Click(object sender, EventArgs e)
+        private void btnSuggestionDelete_Click(object sender, EventArgs e)
         {
             txtEndstation.Clear();
             txtStartstation.Clear();
             lstStartstation.Items.Clear();
             lstEndstation.Items.Clear();
-            lstAusgabe.Items.Clear();
-            dtpDatum.ResetText();
+            dgvOutput.Rows.Clear();
+            dtpDate.ResetText();
+        }
+
+        public string TimeStampToTime(string response)
+        {
+            //https://coderwall.com/p/e8rzuq/how-to-convert-a-unix-timestamp-to-a-net-system-datetime-object
+
+            double h = Convert.ToDouble(response);
+            System.DateTime s = new System.DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+            s = s.AddSeconds(h);
+            string k = s.ToString("H:mm");
+            return k;
         }
     }
 }
