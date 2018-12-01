@@ -32,7 +32,7 @@
             this.LbStartstation = new System.Windows.Forms.Label();
             this.LbEndstation = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.LbDatum = new System.Windows.Forms.Label();
+            this.LbDate = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnSuggestionDelete = new System.Windows.Forms.Button();
             this.txtEndstation = new System.Windows.Forms.TextBox();
@@ -40,11 +40,16 @@
             this.lstEndstation = new System.Windows.Forms.ListBox();
             this.btnSuggestion = new System.Windows.Forms.Button();
             this.dgvOutput = new System.Windows.Forms.DataGridView();
-            this.StationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departureTimestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.platfrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArrivalTimestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.platfrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departureTimestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.lbTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // txtStartstation
@@ -76,21 +81,21 @@
             // 
             this.dtpDate.Location = new System.Drawing.Point(66, 256);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(270, 22);
+            this.dtpDate.Size = new System.Drawing.Size(245, 22);
             this.dtpDate.TabIndex = 8;
             // 
-            // LbDatum
+            // LbDate
             // 
-            this.LbDatum.AutoSize = true;
-            this.LbDatum.Location = new System.Drawing.Point(69, 233);
-            this.LbDatum.Name = "LbDatum";
-            this.LbDatum.Size = new System.Drawing.Size(49, 17);
-            this.LbDatum.TabIndex = 7;
-            this.LbDatum.Text = "Datum";
+            this.LbDate.AutoSize = true;
+            this.LbDate.Location = new System.Drawing.Point(69, 233);
+            this.LbDate.Name = "LbDate";
+            this.LbDate.Size = new System.Drawing.Size(49, 17);
+            this.LbDate.TabIndex = 7;
+            this.LbDate.Text = "Datum";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(400, 245);
+            this.btnSearch.Location = new System.Drawing.Point(505, 245);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(79, 33);
             this.btnSearch.TabIndex = 9;
@@ -100,7 +105,7 @@
             // 
             // btnSuggestionDelete
             // 
-            this.btnSuggestionDelete.Location = new System.Drawing.Point(497, 255);
+            this.btnSuggestionDelete.Location = new System.Drawing.Point(590, 255);
             this.btnSuggestionDelete.Name = "btnSuggestionDelete";
             this.btnSuggestionDelete.Size = new System.Drawing.Size(141, 23);
             this.btnSuggestionDelete.TabIndex = 10;
@@ -159,29 +164,8 @@
             this.dgvOutput.Name = "dgvOutput";
             this.dgvOutput.ReadOnly = true;
             this.dgvOutput.RowTemplate.Height = 24;
-            this.dgvOutput.Size = new System.Drawing.Size(575, 242);
+            this.dgvOutput.Size = new System.Drawing.Size(665, 196);
             this.dgvOutput.TabIndex = 11;
-            // 
-            // StationName
-            // 
-            this.StationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.StationName.HeaderText = "Station";
-            this.StationName.Name = "StationName";
-            this.StationName.ReadOnly = true;
-            // 
-            // departureTimestamp
-            // 
-            this.departureTimestamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.departureTimestamp.HeaderText = "Abfahrtszeit";
-            this.departureTimestamp.Name = "departureTimestamp";
-            this.departureTimestamp.ReadOnly = true;
-            // 
-            // platfrom
-            // 
-            this.platfrom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.platfrom.HeaderText = "Gleis";
-            this.platfrom.Name = "platfrom";
-            this.platfrom.ReadOnly = true;
             // 
             // ArrivalTimestamp
             // 
@@ -190,19 +174,76 @@
             this.ArrivalTimestamp.Name = "ArrivalTimestamp";
             this.ArrivalTimestamp.ReadOnly = true;
             // 
+            // platfrom
+            // 
+            this.platfrom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.platfrom.HeaderText = "Gleis";
+            this.platfrom.Name = "platfrom";
+            this.platfrom.ReadOnly = true;
+            // 
+            // departureTimestamp
+            // 
+            this.departureTimestamp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.departureTimestamp.HeaderText = "Abfahrtszeit";
+            this.departureTimestamp.Name = "departureTimestamp";
+            this.departureTimestamp.ReadOnly = true;
+            // 
+            // StationName
+            // 
+            this.StationName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StationName.HeaderText = "Station";
+            this.StationName.Name = "StationName";
+            this.StationName.ReadOnly = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(342, 255);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(49, 22);
+            this.numericUpDown1.TabIndex = 12;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(397, 255);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(49, 22);
+            this.numericUpDown2.TabIndex = 12;
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Location = new System.Drawing.Point(342, 232);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(85, 17);
+            this.lbTime.TabIndex = 13;
+            this.lbTime.Text = "Ankunftszeit";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 603);
+            this.ClientSize = new System.Drawing.Size(800, 561);
+            this.Controls.Add(this.lbTime);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.dgvOutput);
             this.Controls.Add(this.btnSuggestion);
             this.Controls.Add(this.lstEndstation);
             this.Controls.Add(this.lstStartstation);
             this.Controls.Add(this.btnSuggestionDelete);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.LbDatum);
+            this.Controls.Add(this.LbDate);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.LbEndstation);
             this.Controls.Add(this.LbStartstation);
@@ -211,6 +252,8 @@
             this.Name = "Form1";
             this.Text = "ÖV-Reisen";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,7 +265,7 @@
         private System.Windows.Forms.Label LbStartstation;
         private System.Windows.Forms.Label LbEndstation;
         private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.Label LbDatum;
+        private System.Windows.Forms.Label LbDate;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnSuggestionDelete;
         private System.Windows.Forms.TextBox txtEndstation;
@@ -234,6 +277,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn departureTimestamp;
         private System.Windows.Forms.DataGridViewTextBoxColumn platfrom;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArrivalTimestamp;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label lbTime;
     }
 }
 

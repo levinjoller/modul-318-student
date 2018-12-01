@@ -21,14 +21,17 @@ namespace OEV_Applikation
         {
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
-            string datum = dtpDate.Value.ToString();
+            string date = dtpDate.Value.ToString("yy-MM-dd");
+            string time = numericUpDown1.Value + ":" + numericUpDown2.Value;
+
+            MessageBox.Show(time);
 
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
 
             List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
             List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
 
-            List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnections(startStation, endStation).ConnectionList;
+            List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnectionsByDateTime(startStation, endStation, date, time).ConnectionList;
 
             dgvOutput.Rows.Clear();
 
@@ -95,6 +98,8 @@ namespace OEV_Applikation
             lstEndstation.Items.Clear();
             dgvOutput.Rows.Clear();
             dtpDate.ResetText();
+            numericUpDown1.Value = DateTime.Now.Hour;
+            numericUpDown2.Value = DateTime.Now.Minute;
         }
 
         public string TimeStampToTime(string response)
