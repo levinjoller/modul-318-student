@@ -19,18 +19,20 @@ namespace OEV_Applikation
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //Speichert den in string convertierten Inhalt der Eingabe in Variablen ab
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
-            string date = dtpDate.Value.ToString("yy-MM-dd");
-            string time = numericUpDown1.Value + ":" + numericUpDown2.Value;
+            string date = dtpDate.Value.ToString("yyyy-MM-dd");
+            string time = nbrHour.Value + ":" + nbrMinute.Value;
 
-            MessageBox.Show(time);
-
+            //Erstellte ein Objekt der Klasse Transport nach Vorgaben der Struktur ITransport
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
 
+            //Erstellt eine Liste welche Objekte der Klasse Station beinhaltet, welche das Wort (Parameter) im Namen der Station enthält
             List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
             List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
 
+            //Erstellt eine Liste welche Objekte der Klasse Connection beinhaltet, welche die Verbindungen zwischen zwei Stationen darstellt
             List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnectionsByDateTime(startStation, endStation, date, time).ConnectionList;
 
             dgvOutput.Rows.Clear();
@@ -40,7 +42,7 @@ namespace OEV_Applikation
                 foreach (SwissTransport.Connection connection in startEndConnection)
                 {
                     dgvOutput.Rows.Add(connection.From.Station.Name, TimeStampToTime(connection.From.DepartureTimestamp), 
-                        connection.From.Platform, TimeStampToTime(connection.To.ArrivalTimestamp));
+                        connection.From.Platform, TimeStampToTime(connection.To.ArrivalTimestamp), connection.To.Station.Name);
 
                 }
 
@@ -92,14 +94,7 @@ namespace OEV_Applikation
 
         private void btnSuggestionDelete_Click(object sender, EventArgs e)
         {
-            txtEndstation.Clear();
-            txtStartstation.Clear();
-            lstStartstation.Items.Clear();
-            lstEndstation.Items.Clear();
-            dgvOutput.Rows.Clear();
-            dtpDate.ResetText();
-            numericUpDown1.Value = DateTime.Now.Hour;
-            numericUpDown2.Value = DateTime.Now.Minute;
+            ClearAll();
         }
 
         public string TimeStampToTime(string response)
@@ -111,6 +106,24 @@ namespace OEV_Applikation
             s = s.AddSeconds(h);
             string k = s.ToString("H:mm");
             return k;
+        }
+
+        public void ClearAll()
+        {
+            txtEndstation.Clear();
+            txtStartstation.Clear();
+            lstStartstation.Items.Clear();
+            lstEndstation.Items.Clear();
+            dgvOutput.Rows.Clear();
+            dtpDate.ResetText();
+            nbrHour.Value = DateTime.Now.Hour;
+            nbrMinute.Value = DateTime.Now.Minute;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            nbrHour.Value = DateTime.Now.Hour;
+            nbrMinute.Value = DateTime.Now.Minute;
         }
     }
 }
