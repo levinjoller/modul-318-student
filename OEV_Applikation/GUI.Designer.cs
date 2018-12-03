@@ -54,10 +54,14 @@
             this.btnSearchStation = new System.Windows.Forms.Button();
             this.lstSuggestionsStation = new System.Windows.Forms.ListBox();
             this.dgvOutputStation = new System.Windows.Forms.DataGridView();
-            this.StationFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StationTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblStation = new System.Windows.Forms.Label();
             this.txtStation = new System.Windows.Forms.TextBox();
+            this.StationFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StationTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSuggestionsDeleteTab2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbrHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbrMinute)).BeginInit();
@@ -291,6 +295,7 @@
             // 
             // sdStation
             // 
+            this.sdStation.Controls.Add(this.btnSuggestionsDeleteTab2);
             this.sdStation.Controls.Add(this.btnSearchStation);
             this.sdStation.Controls.Add(this.lstSuggestionsStation);
             this.sdStation.Controls.Add(this.dgvOutputStation);
@@ -330,25 +335,16 @@
             this.dgvOutputStation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOutputStation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StationFrom,
-            this.StationTo});
-            this.dgvOutputStation.Location = new System.Drawing.Point(64, 250);
+            this.StationTo,
+            this.departure,
+            this.vehicle,
+            this.number});
+            this.dgvOutputStation.Location = new System.Drawing.Point(35, 250);
             this.dgvOutputStation.Name = "dgvOutputStation";
             this.dgvOutputStation.ReadOnly = true;
             this.dgvOutputStation.RowTemplate.Height = 24;
-            this.dgvOutputStation.Size = new System.Drawing.Size(634, 248);
+            this.dgvOutputStation.Size = new System.Drawing.Size(720, 248);
             this.dgvOutputStation.TabIndex = 4;
-            // 
-            // StationFrom
-            // 
-            this.StationFrom.HeaderText = "Station";
-            this.StationFrom.Name = "StationFrom";
-            this.StationFrom.ReadOnly = true;
-            // 
-            // StationTo
-            // 
-            this.StationTo.HeaderText = "Zielstation";
-            this.StationTo.Name = "StationTo";
-            this.StationTo.ReadOnly = true;
             // 
             // lblStation
             // 
@@ -365,6 +361,52 @@
             this.txtStation.Name = "txtStation";
             this.txtStation.Size = new System.Drawing.Size(267, 22);
             this.txtStation.TabIndex = 2;
+            // 
+            // StationFrom
+            // 
+            this.StationFrom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StationFrom.HeaderText = "Station";
+            this.StationFrom.Name = "StationFrom";
+            this.StationFrom.ReadOnly = true;
+            // 
+            // StationTo
+            // 
+            this.StationTo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StationTo.HeaderText = "Zielstation";
+            this.StationTo.Name = "StationTo";
+            this.StationTo.ReadOnly = true;
+            // 
+            // departure
+            // 
+            this.departure.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.departure.HeaderText = "Abfahrtszeit";
+            this.departure.Name = "departure";
+            this.departure.ReadOnly = true;
+            // 
+            // vehicle
+            // 
+            this.vehicle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.vehicle.HeaderText = "Kategorie";
+            this.vehicle.Name = "vehicle";
+            this.vehicle.ReadOnly = true;
+            // 
+            // number
+            // 
+            this.number.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.number.HeaderText = "Nummer";
+            this.number.Name = "number";
+            this.number.ReadOnly = true;
+            // 
+            // btnSuggestionsDeleteTab2
+            // 
+            this.btnSuggestionsDeleteTab2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSuggestionsDeleteTab2.Location = new System.Drawing.Point(523, 169);
+            this.btnSuggestionsDeleteTab2.Name = "btnSuggestionsDeleteTab2";
+            this.btnSuggestionsDeleteTab2.Size = new System.Drawing.Size(141, 23);
+            this.btnSuggestionsDeleteTab2.TabIndex = 11;
+            this.btnSuggestionsDeleteTab2.Text = "Auswahl entfernen";
+            this.btnSuggestionsDeleteTab2.UseVisualStyleBackColor = true;
+            this.btnSuggestionsDeleteTab2.Click += new System.EventHandler(this.btnSuggestionsDeleteTab2_Click);
             // 
             // Form1
             // 
@@ -419,10 +461,14 @@
         private System.Windows.Forms.Label lblStation;
         private System.Windows.Forms.TextBox txtStation;
         private System.Windows.Forms.DataGridView dgvOutputStation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StationFrom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StationTo;
         private System.Windows.Forms.ListBox lstSuggestionsStation;
         private System.Windows.Forms.Button btnSearchStation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StationFrom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StationTo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departure;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.Button btnSuggestionsDeleteTab2;
     }
 }
 

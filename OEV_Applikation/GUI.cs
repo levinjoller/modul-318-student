@@ -94,14 +94,14 @@ namespace OEV_Applikation
 
         private void btnSuggestionDelete_Click(object sender, EventArgs e)
         {
-            ClearAll();
+            ClearAllTabOne();
         }
 
         /// <summary>
         /// Wandelt den unix-Timestamp in System.DateTime
         /// </summary>
         /// <param name="unixTime">Übergabe des unix-Timestamps</param>
-        /// Gibt die umgewandelte Zeit in {Hour:Minutes} zurück
+        /// Gibt die umgewandelte Zeit in {Hour:Minute} als string zurück
         /// <returns></returns>
         public string TimeStampToTime(string unixTime)
         {
@@ -116,7 +116,7 @@ namespace OEV_Applikation
         /// <summary>
         ///Bereinigt alle Eingabe- und Ausgabeelemente im 1.Tab
         /// </summary>
-        public void ClearAll()
+        public void ClearAllTabOne()
         {
             txtEndstation.Clear();
             txtStartstation.Clear();
@@ -128,6 +128,16 @@ namespace OEV_Applikation
             nbrMinute.Value = DateTime.Now.Minute;
         }
 
+        /// <summary>
+        /// Bereinigt alle Eingabe- und Ausgabeelemente im 2.Tab
+        /// </summary>
+        public void ClearAllTabTwo()
+        {
+            txtStation.Clear();
+            dgvOutputStation.Rows.Clear();
+            lstSuggestionsStation.Items.Clear();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             nbrHour.Value = DateTime.Now.Hour;
@@ -136,12 +146,29 @@ namespace OEV_Applikation
 
         private void btnSearchStation_Click(object sender, EventArgs e)
         {
+            string station = txtStation.Text;
 
+            SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
+            List<SwissTransport.Station> stationList = StationConnetions.GetStations(station).StationList;
+
+            //Enthält das erste Objekt der Klasse Station von der Liste stationList
+            SwissTransport.Station UsedStation = stationList[0];
+
+            //Erstellt eine Liste welche Objekte der Klasse StationBoard beinhaltet, welche mit dem Namen und der Id der UsedStation übereinstimmen
+            List<SwissTransport.StationBoard> EntriesConnections = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Entries;
+
+            //Enthält das Objekt der Klasse Station, welches mit dem Namen und der Id der UsedStation übereinstimmt
+            SwissTransport.Station EntriesStation = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Station;
+
+            foreach(SwissTransport.StationBoard stationBoard in EntriesConnections)
+            {
+                dgvOutputStation.Rows.Add(EntriesStation.Name, stationBoard.To, stationBoard.Stop.Departure.ToShortTimeString(), stationBoard.Category, stationBoard.Number);
+            }
         }
 
         private void tbcChangeView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Bestimmen auf welcher Ansicht ich bin, um den AcceptButton zu setzen
+            //Bestimmen auf welcher Ansicht der Benutzer ist, um den AcceptButton zu setzen
             if(tbcChangeView.SelectedTab == sdStation)
             {
                 this.AcceptButton = btnSearchStation;
@@ -151,6 +178,11 @@ namespace OEV_Applikation
                 this.AcceptButton = btnSearch;
             }
 
+        }
+
+        private void btnSuggestionsDeleteTab2_Click(object sender, EventArgs e)
+        {
+            ClearAllTabTwo();
         }
     }
 }
