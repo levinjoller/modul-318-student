@@ -97,17 +97,25 @@ namespace OEV_Applikation
             ClearAll();
         }
 
-        public string TimeStampToTime(string response)
+        /// <summary>
+        /// Wandelt den unix-Timestamp in System.DateTime
+        /// </summary>
+        /// <param name="unixTime">Übergabe des unix-Timestamps</param>
+        /// Gibt die umgewandelte Zeit in {Hour:Minutes} zurück
+        /// <returns></returns>
+        public string TimeStampToTime(string unixTime)
         {
             //https://coderwall.com/p/e8rzuq/how-to-convert-a-unix-timestamp-to-a-net-system-datetime-object
-
-            double h = Convert.ToDouble(response);
+            double h = Convert.ToDouble(unixTime);
             System.DateTime s = new System.DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             s = s.AddSeconds(h);
             string k = s.ToString("H:mm");
             return k;
         }
 
+        /// <summary>
+        ///Bereinigt alle Eingabe- und Ausgabeelemente im 1.Tab
+        /// </summary>
         public void ClearAll()
         {
             txtEndstation.Clear();
@@ -124,6 +132,25 @@ namespace OEV_Applikation
         {
             nbrHour.Value = DateTime.Now.Hour;
             nbrMinute.Value = DateTime.Now.Minute;
+        }
+
+        private void btnSearchStation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbcChangeView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Bestimmen auf welcher Ansicht ich bin, um den AcceptButton zu setzen
+            if(tbcChangeView.SelectedTab == sdStation)
+            {
+                this.AcceptButton = btnSearchStation;
+            }
+            else
+            {
+                this.AcceptButton = btnSearch;
+            }
+
         }
     }
 }
