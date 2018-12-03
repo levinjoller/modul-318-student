@@ -27,25 +27,33 @@ namespace OEV_Applikation
 
             //Erstellte ein Objekt der Klasse Transport nach Vorgaben der Struktur ITransport
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
-
-            //Erstellt eine Liste welche Objekte der Klasse Station beinhaltet, welche das Wort (Parameter) im Namen der Station enthält
-            List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
-            List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
-
-            //Erstellt eine Liste welche Objekte der Klasse Connection beinhaltet, welche die Verbindungen zwischen zwei Stationen darstellt
-            List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnectionsByDateTime(startStation, endStation, date, time).ConnectionList;
-
-            dgvOutput.Rows.Clear();
-
-            if (startEndConnection != null)
+            try
             {
-                foreach (SwissTransport.Connection connection in startEndConnection)
+                //Erstellt eine Liste welche Objekte der Klasse Station beinhaltet, welche das Wort (Parameter) im Namen der Station enthält
+                List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
+                List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
+
+                //Erstellt eine Liste welche Objekte der Klasse Connection beinhaltet, welche die Verbindungen zwischen zwei Stationen darstellt
+                List<SwissTransport.Connection> startEndConnection = StationConnetions.GetConnectionsByDateTime(startStation, endStation, date, time).ConnectionList;
+
+                dgvOutput.Rows.Clear();
+
+                if (startEndConnection.Count != 0)
                 {
-                    dgvOutput.Rows.Add(connection.From.Station.Name, TimeStampToTime(connection.From.DepartureTimestamp), 
-                        connection.From.Platform, TimeStampToTime(connection.To.ArrivalTimestamp), connection.To.Station.Name);
-
+                    foreach (SwissTransport.Connection connection in startEndConnection)
+                    {
+                        dgvOutput.Rows.Add(connection.From.Station.Name, TimeStampToTime(connection.From.DepartureTimestamp),
+                            connection.From.Platform, TimeStampToTime(connection.To.ArrivalTimestamp), connection.To.Station.Name);
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("Keine Verbindung gefunden.\nÜberprüfen Sie Ihre Eingabe.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Bitte Überprüfen Sie Ihre Internetverbindung.");
             }
 
         }
@@ -72,8 +80,6 @@ namespace OEV_Applikation
             {
                 lstEndstation.Items.Add(station.Name);
             }
-
-
         }
 
         private void lstEndstation_Click(object sender, EventArgs e)
@@ -113,10 +119,7 @@ namespace OEV_Applikation
             return k;
         }
 
-        /// <summary>
-        ///Bereinigt alle Eingabe- und Ausgabeelemente im 1.Tab
-        /// </summary>
-        public void ClearAllTabOne()
+        private void ClearAllTabOne()
         {
             txtEndstation.Clear();
             txtStartstation.Clear();
@@ -128,17 +131,14 @@ namespace OEV_Applikation
             nbrMinute.Value = DateTime.Now.Minute;
         }
 
-        /// <summary>
-        /// Bereinigt alle Eingabe- und Ausgabeelemente im 2.Tab
-        /// </summary>
-        public void ClearAllTabTwo()
+        private void ClearAllTabTwo()
         {
             txtStation.Clear();
             dgvOutputStation.Rows.Clear();
             lstSuggestionsStation.Items.Clear();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void GUI_Load(object sender, EventArgs e)
         {
             nbrHour.Value = DateTime.Now.Hour;
             nbrMinute.Value = DateTime.Now.Minute;
@@ -150,39 +150,80 @@ namespace OEV_Applikation
 
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
             List<SwissTransport.Station> stationList = StationConnetions.GetStations(station).StationList;
-
-            //Enthält das erste Objekt der Klasse Station von der Liste stationList
-            SwissTransport.Station UsedStation = stationList[0];
-
-            //Erstellt eine Liste welche Objekte der Klasse StationBoard beinhaltet, welche mit dem Namen und der Id der UsedStation übereinstimmen
-            List<SwissTransport.StationBoard> EntriesConnections = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Entries;
-
-            //Enthält das Objekt der Klasse Station, welches mit dem Namen und der Id der UsedStation übereinstimmt
-            SwissTransport.Station EntriesStation = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Station;
-
-            foreach(SwissTransport.StationBoard stationBoard in EntriesConnections)
+            if(stationList.Count != 0)
             {
-                dgvOutputStation.Rows.Add(EntriesStation.Name, stationBoard.To, stationBoard.Stop.Departure.ToShortTimeString(), stationBoard.Category, stationBoard.Number);
+                //Enthält das erste Objekt der Klasse Station von der Liste stationList
+                SwissTransport.Station UsedStation = stationList[0];
+
+                //Erstellt eine Liste welche Objekte der Klasse StationBoard beinhaltet, welche mit dem Namen und der Id der UsedStation übereinstimmen
+                List<SwissTransport.StationBoard> EntriesConnections = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Entries;
+
+                //Enthält das Objekt der Klasse Station, welches mit dem Namen und der Id der UsedStation übereinstimmt
+                SwissTransport.Station EntriesStation = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Station;
+
+                if (EntriesConnections.Count != 0)
+                {
+                    foreach (SwissTransport.StationBoard stationBoard in EntriesConnections)
+                    {
+                        dgvOutputStation.Rows.Add(EntriesStation.Name, stationBoard.To, stationBoard.Stop.Departure.ToShortTimeString(), stationBoard.Category, stationBoard.Number);
+                    }
+                }
+                else
+                {
+                    messageError();
+                }
             }
+            else
+            {
+                messageError();
+            }
+        }
+
+        //Enthält die Ausgabe bei einer fehlerhaften Eingabe
+        private void messageError()
+        {
+            MessageBox.Show("Keine Anschlüsse gefunden.\nÜberprüfen Sie Ihre Eingabe.");
         }
 
         private void tbcChangeView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Bestimmen auf welcher Ansicht der Benutzer ist, um den AcceptButton zu setzen
+            //Bestimmen auf welcher Ansicht der Benutzer ist, um den AcceptButton und den CancelButton zu setzen
             if(tbcChangeView.SelectedTab == sdStation)
             {
-                this.AcceptButton = btnSearchStation;
+                AcceptButton = btnSearchStation;
+                CancelButton = btnSuggestionsDeleteTab2;
             }
             else
             {
-                this.AcceptButton = btnSearch;
+                AcceptButton = btnSearch;
+                CancelButton = btnSuggestionDelete;
             }
-
         }
 
         private void btnSuggestionsDeleteTab2_Click(object sender, EventArgs e)
         {
             ClearAllTabTwo();
+        }
+
+        private void btnSuggestionStation_Click(object sender, EventArgs e)
+        {
+            string station = txtStation.Text;
+
+            SwissTransport.Transport stationConnetions = new SwissTransport.Transport();
+            List<SwissTransport.Station> stationList = stationConnetions.GetStations(station).StationList;
+
+            foreach(SwissTransport.Station oneStation in stationList)
+            {
+                lstSuggestionsStation.Items.Add(oneStation.Name);
+            }
+        }
+
+        private void lstSuggestionsStation_Click(object sender, EventArgs e)
+        {
+            if (lstSuggestionsStation.Items.Count != 0)
+            {
+                txtStation.Text = lstSuggestionsStation.SelectedItem.ToString();
+            }
         }
     }
 }

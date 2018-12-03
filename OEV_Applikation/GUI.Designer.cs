@@ -51,17 +51,18 @@
             this.tbcChangeView = new System.Windows.Forms.TabControl();
             this.sdConnection = new System.Windows.Forms.TabPage();
             this.sdStation = new System.Windows.Forms.TabPage();
+            this.btnSuggestionStation = new System.Windows.Forms.Button();
+            this.btnSuggestionsDeleteTab2 = new System.Windows.Forms.Button();
             this.btnSearchStation = new System.Windows.Forms.Button();
             this.lstSuggestionsStation = new System.Windows.Forms.ListBox();
             this.dgvOutputStation = new System.Windows.Forms.DataGridView();
-            this.lblStation = new System.Windows.Forms.Label();
-            this.txtStation = new System.Windows.Forms.TextBox();
             this.StationFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StationTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.departure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSuggestionsDeleteTab2 = new System.Windows.Forms.Button();
+            this.lblStation = new System.Windows.Forms.Label();
+            this.txtStation = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbrHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbrMinute)).BeginInit();
@@ -118,7 +119,7 @@
             this.btnSearch.Location = new System.Drawing.Point(515, 248);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(79, 33);
-            this.btnSearch.TabIndex = 9;
+            this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Suchen";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -129,7 +130,7 @@
             this.btnSuggestionDelete.Location = new System.Drawing.Point(600, 258);
             this.btnSuggestionDelete.Name = "btnSuggestionDelete";
             this.btnSuggestionDelete.Size = new System.Drawing.Size(141, 23);
-            this.btnSuggestionDelete.TabIndex = 10;
+            this.btnSuggestionDelete.TabIndex = 14;
             this.btnSuggestionDelete.Text = "Auswahl entfernen";
             this.btnSuggestionDelete.UseVisualStyleBackColor = true;
             this.btnSuggestionDelete.Click += new System.EventHandler(this.btnSuggestionDelete_Click);
@@ -187,7 +188,7 @@
             this.dgvOutput.ReadOnly = true;
             this.dgvOutput.RowTemplate.Height = 24;
             this.dgvOutput.Size = new System.Drawing.Size(665, 196);
-            this.dgvOutput.TabIndex = 11;
+            this.dgvOutput.TabIndex = 13;
             // 
             // StationName
             // 
@@ -234,7 +235,7 @@
             0});
             this.nbrHour.Name = "nbrHour";
             this.nbrHour.Size = new System.Drawing.Size(49, 22);
-            this.nbrHour.TabIndex = 12;
+            this.nbrHour.TabIndex = 10;
             // 
             // nbrMinute
             // 
@@ -246,7 +247,7 @@
             0});
             this.nbrMinute.Name = "nbrMinute";
             this.nbrMinute.Size = new System.Drawing.Size(49, 22);
-            this.nbrMinute.TabIndex = 12;
+            this.nbrMinute.TabIndex = 11;
             // 
             // lblTime
             // 
@@ -254,7 +255,7 @@
             this.lblTime.Location = new System.Drawing.Point(307, 239);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(53, 17);
-            this.lblTime.TabIndex = 13;
+            this.lblTime.TabIndex = 9;
             this.lblTime.Text = "Uhrzeit";
             // 
             // tbcChangeView
@@ -295,6 +296,7 @@
             // 
             // sdStation
             // 
+            this.sdStation.Controls.Add(this.btnSuggestionStation);
             this.sdStation.Controls.Add(this.btnSuggestionsDeleteTab2);
             this.sdStation.Controls.Add(this.btnSearchStation);
             this.sdStation.Controls.Add(this.lstSuggestionsStation);
@@ -309,12 +311,33 @@
             this.sdStation.Text = "Anschlüsse von Station";
             this.sdStation.UseVisualStyleBackColor = true;
             // 
+            // btnSuggestionStation
+            // 
+            this.btnSuggestionStation.Location = new System.Drawing.Point(337, 87);
+            this.btnSuggestionStation.Name = "btnSuggestionStation";
+            this.btnSuggestionStation.Size = new System.Drawing.Size(115, 51);
+            this.btnSuggestionStation.TabIndex = 2;
+            this.btnSuggestionStation.Text = "Vorschläge Anzeigen";
+            this.btnSuggestionStation.UseVisualStyleBackColor = true;
+            this.btnSuggestionStation.Click += new System.EventHandler(this.btnSuggestionStation_Click);
+            // 
+            // btnSuggestionsDeleteTab2
+            // 
+            this.btnSuggestionsDeleteTab2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSuggestionsDeleteTab2.Location = new System.Drawing.Point(614, 169);
+            this.btnSuggestionsDeleteTab2.Name = "btnSuggestionsDeleteTab2";
+            this.btnSuggestionsDeleteTab2.Size = new System.Drawing.Size(141, 23);
+            this.btnSuggestionsDeleteTab2.TabIndex = 6;
+            this.btnSuggestionsDeleteTab2.Text = "Auswahl entfernen";
+            this.btnSuggestionsDeleteTab2.UseVisualStyleBackColor = true;
+            this.btnSuggestionsDeleteTab2.Click += new System.EventHandler(this.btnSuggestionsDeleteTab2_Click);
+            // 
             // btnSearchStation
             // 
-            this.btnSearchStation.Location = new System.Drawing.Point(360, 161);
+            this.btnSearchStation.Location = new System.Drawing.Point(451, 161);
             this.btnSearchStation.Name = "btnSearchStation";
             this.btnSearchStation.Size = new System.Drawing.Size(157, 31);
-            this.btnSearchStation.TabIndex = 6;
+            this.btnSearchStation.TabIndex = 4;
             this.btnSearchStation.Text = "Anschlüsse Anzeigen";
             this.btnSearchStation.UseVisualStyleBackColor = true;
             this.btnSearchStation.Click += new System.EventHandler(this.btnSearchStation_Click);
@@ -326,7 +349,8 @@
             this.lstSuggestionsStation.Location = new System.Drawing.Point(64, 76);
             this.lstSuggestionsStation.Name = "lstSuggestionsStation";
             this.lstSuggestionsStation.Size = new System.Drawing.Size(267, 116);
-            this.lstSuggestionsStation.TabIndex = 5;
+            this.lstSuggestionsStation.TabIndex = 3;
+            this.lstSuggestionsStation.Click += new System.EventHandler(this.lstSuggestionsStation_Click);
             // 
             // dgvOutputStation
             // 
@@ -344,23 +368,7 @@
             this.dgvOutputStation.ReadOnly = true;
             this.dgvOutputStation.RowTemplate.Height = 24;
             this.dgvOutputStation.Size = new System.Drawing.Size(720, 248);
-            this.dgvOutputStation.TabIndex = 4;
-            // 
-            // lblStation
-            // 
-            this.lblStation.AutoSize = true;
-            this.lblStation.Location = new System.Drawing.Point(61, 27);
-            this.lblStation.Name = "lblStation";
-            this.lblStation.Size = new System.Drawing.Size(52, 17);
-            this.lblStation.TabIndex = 3;
-            this.lblStation.Text = "Station";
-            // 
-            // txtStation
-            // 
-            this.txtStation.Location = new System.Drawing.Point(64, 47);
-            this.txtStation.Name = "txtStation";
-            this.txtStation.Size = new System.Drawing.Size(267, 22);
-            this.txtStation.TabIndex = 2;
+            this.dgvOutputStation.TabIndex = 5;
             // 
             // StationFrom
             // 
@@ -397,16 +405,21 @@
             this.number.Name = "number";
             this.number.ReadOnly = true;
             // 
-            // btnSuggestionsDeleteTab2
+            // lblStation
             // 
-            this.btnSuggestionsDeleteTab2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSuggestionsDeleteTab2.Location = new System.Drawing.Point(523, 169);
-            this.btnSuggestionsDeleteTab2.Name = "btnSuggestionsDeleteTab2";
-            this.btnSuggestionsDeleteTab2.Size = new System.Drawing.Size(141, 23);
-            this.btnSuggestionsDeleteTab2.TabIndex = 11;
-            this.btnSuggestionsDeleteTab2.Text = "Auswahl entfernen";
-            this.btnSuggestionsDeleteTab2.UseVisualStyleBackColor = true;
-            this.btnSuggestionsDeleteTab2.Click += new System.EventHandler(this.btnSuggestionsDeleteTab2_Click);
+            this.lblStation.AutoSize = true;
+            this.lblStation.Location = new System.Drawing.Point(61, 27);
+            this.lblStation.Name = "lblStation";
+            this.lblStation.Size = new System.Drawing.Size(52, 17);
+            this.lblStation.TabIndex = 0;
+            this.lblStation.Text = "Station";
+            // 
+            // txtStation
+            // 
+            this.txtStation.Location = new System.Drawing.Point(64, 47);
+            this.txtStation.Name = "txtStation";
+            this.txtStation.Size = new System.Drawing.Size(267, 22);
+            this.txtStation.TabIndex = 1;
             // 
             // Form1
             // 
@@ -417,9 +430,10 @@
             this.ClientSize = new System.Drawing.Size(824, 610);
             this.Controls.Add(this.tbcChangeView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "ÖV-Reisen";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.GUI_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbrHour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbrMinute)).EndInit();
@@ -469,6 +483,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.Button btnSuggestionsDeleteTab2;
+        private System.Windows.Forms.Button btnSuggestionStation;
     }
 }
 
