@@ -23,7 +23,9 @@ namespace OEV_Applikation
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
             string date = dtpDate.Value.ToString("yyyy-MM-dd");
-            string time = nbrHour.Value + ":" + nbrMinute.Value;
+
+            //Die Zeitzone wird im Moment noch manuell mit +1 angepasst
+            string time = (nbrHour.Value + 1) + ":" + nbrMinute.Value;
 
             //Erstellte ein Objekt der Klasse Transport nach Vorgaben der Struktur ITransport
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
