@@ -17,7 +17,7 @@ namespace OEV_Applikation
             InitializeComponent();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
             //Speichert den in string convertierten Inhalt der Eingabe in Variablen ab
             string startStation = txtStartstation.Text;
@@ -53,12 +53,12 @@ namespace OEV_Applikation
             }
             catch
             {
-                messageConnectionError();
+                MessageConnectionError();
             }
 
         }
 
-        private void btnSuggestion_Click(object sender, EventArgs e)
+        private void BtnSuggestion_Click(object sender, EventArgs e)
         {
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
@@ -84,12 +84,12 @@ namespace OEV_Applikation
             }
             catch
             {
-                messageConnectionError();
+                MessageConnectionError();
             }
 
         }
 
-        private void lstEndstation_Click(object sender, EventArgs e)
+        private void LstEndstation_Click(object sender, EventArgs e)
         {
             if(lstEndstation.Items.Count != 0)
             {
@@ -97,7 +97,7 @@ namespace OEV_Applikation
             }
         }
 
-        private void lstStartstation_Click(object sender, EventArgs e)
+        private void LstStartstation_Click(object sender, EventArgs e)
         {
             if(lstStartstation.Items.Count != 0)
             {
@@ -105,7 +105,7 @@ namespace OEV_Applikation
             }
         }
 
-        private void btnSuggestionDelete_Click(object sender, EventArgs e)
+        private void BtnSuggestionDelete_Click(object sender, EventArgs e)
         {
             ClearAllTabOne();
         }
@@ -151,7 +151,7 @@ namespace OEV_Applikation
             nbrMinute.Value = DateTime.Now.Minute;
         }
 
-        private void btnSearchStation_Click(object sender, EventArgs e)
+        private void BtnSearchStation_Click(object sender, EventArgs e)
         {
             string station = txtStation.Text;
 
@@ -179,33 +179,33 @@ namespace OEV_Applikation
                     }
                     else
                     {
-                        messageError();
+                        MessageError();
                     }
                 }
                 else
                 {
-                    messageError();
+                    MessageError();
                 }
             }
             catch
             {
-                messageConnectionError();
+                MessageConnectionError();
             }
         }
 
         //Enthält die Ausgabe bei einer fehlerhaften Eingabe
-        private void messageError()
+        private void MessageError()
         {
             MessageBox.Show("Keine Anschlüsse gefunden.\nÜberprüfen Sie Ihre Eingabe.");
         }
 
         //Enthält die Ausgabe, wenn die Daten über die API nicht geholt werden konnten.
-        private void messageConnectionError()
+        private void MessageConnectionError()
         {
-            messageConnectionError();
+            MessageConnectionError();
         }
 
-        private void tbcChangeView_SelectedIndexChanged(object sender, EventArgs e)
+        private void TbcChangeView_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Bestimmen auf welcher Ansicht der Benutzer ist, um den AcceptButton und den CancelButton zu setzen
             if(tbcChangeView.SelectedTab == sdStation)
@@ -222,12 +222,12 @@ namespace OEV_Applikation
             }
         }
 
-        private void btnSuggestionsDeleteTab2_Click(object sender, EventArgs e)
+        private void BtnSuggestionsDeleteTab2_Click(object sender, EventArgs e)
         {
             ClearAllTabTwo();
         }
 
-        private void btnSuggestionStation_Click(object sender, EventArgs e)
+        private void BtnSuggestionStation_Click(object sender, EventArgs e)
         {
             string station = txtStation.Text;
 
@@ -243,11 +243,11 @@ namespace OEV_Applikation
             }
             catch
             {
-                messageConnectionError();
+                MessageConnectionError();
             }
         }
 
-        private void lstSuggestionsStation_Click(object sender, EventArgs e)
+        private void LstSuggestionsStation_Click(object sender, EventArgs e)
         {
             if (lstSuggestionsStation.Items.Count != 0)
             {

@@ -122,7 +122,7 @@
             this.btnSearch.TabIndex = 12;
             this.btnSearch.Text = "Suchen";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // btnSuggestionDelete
             // 
@@ -133,7 +133,7 @@
             this.btnSuggestionDelete.TabIndex = 14;
             this.btnSuggestionDelete.Text = "Auswahl entfernen";
             this.btnSuggestionDelete.UseVisualStyleBackColor = true;
-            this.btnSuggestionDelete.Click += new System.EventHandler(this.btnSuggestionDelete_Click);
+            this.btnSuggestionDelete.Click += new System.EventHandler(this.BtnSuggestionDelete_Click);
             // 
             // txtEndstation
             // 
@@ -150,7 +150,7 @@
             this.lstStartstation.Name = "lstStartstation";
             this.lstStartstation.Size = new System.Drawing.Size(267, 116);
             this.lstStartstation.TabIndex = 5;
-            this.lstStartstation.Click += new System.EventHandler(this.lstStartstation_Click);
+            this.lstStartstation.Click += new System.EventHandler(this.LstStartstation_Click);
             // 
             // lstEndstation
             // 
@@ -160,7 +160,7 @@
             this.lstEndstation.Name = "lstEndstation";
             this.lstEndstation.Size = new System.Drawing.Size(267, 116);
             this.lstEndstation.TabIndex = 6;
-            this.lstEndstation.Click += new System.EventHandler(this.lstEndstation_Click);
+            this.lstEndstation.Click += new System.EventHandler(this.LstEndstation_Click);
             // 
             // btnSuggestion
             // 
@@ -170,7 +170,7 @@
             this.btnSuggestion.TabIndex = 4;
             this.btnSuggestion.Text = "Vorschläge Anzeigen";
             this.btnSuggestion.UseVisualStyleBackColor = true;
-            this.btnSuggestion.Click += new System.EventHandler(this.btnSuggestion_Click);
+            this.btnSuggestion.Click += new System.EventHandler(this.BtnSuggestion_Click);
             // 
             // dgvOutput
             // 
@@ -267,7 +267,7 @@
             this.tbcChangeView.SelectedIndex = 0;
             this.tbcChangeView.Size = new System.Drawing.Size(802, 589);
             this.tbcChangeView.TabIndex = 14;
-            this.tbcChangeView.SelectedIndexChanged += new System.EventHandler(this.tbcChangeView_SelectedIndexChanged);
+            this.tbcChangeView.SelectedIndexChanged += new System.EventHandler(this.TbcChangeView_SelectedIndexChanged);
             // 
             // sdConnection
             // 
@@ -319,7 +319,7 @@
             this.btnSuggestionStation.TabIndex = 2;
             this.btnSuggestionStation.Text = "Vorschläge Anzeigen";
             this.btnSuggestionStation.UseVisualStyleBackColor = true;
-            this.btnSuggestionStation.Click += new System.EventHandler(this.btnSuggestionStation_Click);
+            this.btnSuggestionStation.Click += new System.EventHandler(this.BtnSuggestionStation_Click);
             // 
             // btnSuggestionsDeleteTab2
             // 
@@ -330,7 +330,7 @@
             this.btnSuggestionsDeleteTab2.TabIndex = 6;
             this.btnSuggestionsDeleteTab2.Text = "Auswahl entfernen";
             this.btnSuggestionsDeleteTab2.UseVisualStyleBackColor = true;
-            this.btnSuggestionsDeleteTab2.Click += new System.EventHandler(this.btnSuggestionsDeleteTab2_Click);
+            this.btnSuggestionsDeleteTab2.Click += new System.EventHandler(this.BtnSuggestionsDeleteTab2_Click);
             // 
             // btnSearchStation
             // 
@@ -340,7 +340,7 @@
             this.btnSearchStation.TabIndex = 4;
             this.btnSearchStation.Text = "Anschlüsse Anzeigen";
             this.btnSearchStation.UseVisualStyleBackColor = true;
-            this.btnSearchStation.Click += new System.EventHandler(this.btnSearchStation_Click);
+            this.btnSearchStation.Click += new System.EventHandler(this.BtnSearchStation_Click);
             // 
             // lstSuggestionsStation
             // 
@@ -350,7 +350,7 @@
             this.lstSuggestionsStation.Name = "lstSuggestionsStation";
             this.lstSuggestionsStation.Size = new System.Drawing.Size(267, 116);
             this.lstSuggestionsStation.TabIndex = 3;
-            this.lstSuggestionsStation.Click += new System.EventHandler(this.lstSuggestionsStation_Click);
+            this.lstSuggestionsStation.Click += new System.EventHandler(this.LstSuggestionsStation_Click);
             // 
             // dgvOutputStation
             // 
