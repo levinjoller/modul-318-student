@@ -38,7 +38,6 @@
             this.txtEndstation = new System.Windows.Forms.TextBox();
             this.lstStartstation = new System.Windows.Forms.ListBox();
             this.lstEndstation = new System.Windows.Forms.ListBox();
-            this.btnSuggestion = new System.Windows.Forms.Button();
             this.dgvOutput = new System.Windows.Forms.DataGridView();
             this.StationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.departureTimestamp = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,7 +50,6 @@
             this.tbcChangeView = new System.Windows.Forms.TabControl();
             this.sdConnection = new System.Windows.Forms.TabPage();
             this.sdStation = new System.Windows.Forms.TabPage();
-            this.btnSuggestionStation = new System.Windows.Forms.Button();
             this.btnSuggestionsDeleteTab2 = new System.Windows.Forms.Button();
             this.btnSearchStation = new System.Windows.Forms.Button();
             this.lstSuggestionsStation = new System.Windows.Forms.ListBox();
@@ -78,6 +76,7 @@
             this.txtStartstation.Name = "txtStartstation";
             this.txtStartstation.Size = new System.Drawing.Size(267, 22);
             this.txtStartstation.TabIndex = 1;
+            this.txtStartstation.TextChanged += new System.EventHandler(this.txtElementText_SelectedIndexChanged);
             // 
             // lblStartstation
             // 
@@ -86,7 +85,7 @@
             this.lblStartstation.Name = "lblStartstation";
             this.lblStartstation.Size = new System.Drawing.Size(80, 17);
             this.lblStartstation.TabIndex = 0;
-            this.lblStartstation.Text = "Startstation";
+            this.lblStartstation.Text = "&Startstation";
             // 
             // lblEndstation
             // 
@@ -95,7 +94,7 @@
             this.lblEndstation.Name = "lblEndstation";
             this.lblEndstation.Size = new System.Drawing.Size(75, 17);
             this.lblEndstation.TabIndex = 2;
-            this.lblEndstation.Text = "Endstation";
+            this.lblEndstation.Text = "&Endstation";
             // 
             // dtpDate
             // 
@@ -112,7 +111,7 @@
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(49, 17);
             this.lblDate.TabIndex = 7;
-            this.lblDate.Text = "Datum";
+            this.lblDate.Text = "&Datum";
             // 
             // btnSearch
             // 
@@ -141,6 +140,7 @@
             this.txtEndstation.Name = "txtEndstation";
             this.txtEndstation.Size = new System.Drawing.Size(267, 22);
             this.txtEndstation.TabIndex = 3;
+            this.txtEndstation.TextChanged += new System.EventHandler(this.txtElementText_SelectedIndexChanged);
             // 
             // lstStartstation
             // 
@@ -161,16 +161,6 @@
             this.lstEndstation.Size = new System.Drawing.Size(267, 116);
             this.lstEndstation.TabIndex = 6;
             this.lstEndstation.Click += new System.EventHandler(this.LstEndstation_Click);
-            // 
-            // btnSuggestion
-            // 
-            this.btnSuggestion.Location = new System.Drawing.Point(583, 114);
-            this.btnSuggestion.Name = "btnSuggestion";
-            this.btnSuggestion.Size = new System.Drawing.Size(115, 51);
-            this.btnSuggestion.TabIndex = 4;
-            this.btnSuggestion.Text = "Vorschläge Anzeigen";
-            this.btnSuggestion.UseVisualStyleBackColor = true;
-            this.btnSuggestion.Click += new System.EventHandler(this.BtnSuggestion_Click);
             // 
             // dgvOutput
             // 
@@ -256,7 +246,7 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(53, 17);
             this.lblTime.TabIndex = 9;
-            this.lblTime.Text = "Uhrzeit";
+            this.lblTime.Text = "&Uhrzeit";
             // 
             // tbcChangeView
             // 
@@ -271,7 +261,6 @@
             // 
             // sdConnection
             // 
-            this.sdConnection.Controls.Add(this.btnSuggestion);
             this.sdConnection.Controls.Add(this.lblStartstation);
             this.sdConnection.Controls.Add(this.lstStartstation);
             this.sdConnection.Controls.Add(this.txtStartstation);
@@ -296,7 +285,6 @@
             // 
             // sdStation
             // 
-            this.sdStation.Controls.Add(this.btnSuggestionStation);
             this.sdStation.Controls.Add(this.btnSuggestionsDeleteTab2);
             this.sdStation.Controls.Add(this.btnSearchStation);
             this.sdStation.Controls.Add(this.lstSuggestionsStation);
@@ -310,16 +298,6 @@
             this.sdStation.TabIndex = 1;
             this.sdStation.Text = "Anschlüsse von Station";
             this.sdStation.UseVisualStyleBackColor = true;
-            // 
-            // btnSuggestionStation
-            // 
-            this.btnSuggestionStation.Location = new System.Drawing.Point(337, 87);
-            this.btnSuggestionStation.Name = "btnSuggestionStation";
-            this.btnSuggestionStation.Size = new System.Drawing.Size(115, 51);
-            this.btnSuggestionStation.TabIndex = 2;
-            this.btnSuggestionStation.Text = "Vorschläge Anzeigen";
-            this.btnSuggestionStation.UseVisualStyleBackColor = true;
-            this.btnSuggestionStation.Click += new System.EventHandler(this.BtnSuggestionStation_Click);
             // 
             // btnSuggestionsDeleteTab2
             // 
@@ -412,7 +390,7 @@
             this.lblStation.Name = "lblStation";
             this.lblStation.Size = new System.Drawing.Size(52, 17);
             this.lblStation.TabIndex = 0;
-            this.lblStation.Text = "Station";
+            this.lblStation.Text = "&Station";
             // 
             // txtStation
             // 
@@ -420,6 +398,7 @@
             this.txtStation.Name = "txtStation";
             this.txtStation.Size = new System.Drawing.Size(267, 22);
             this.txtStation.TabIndex = 1;
+            this.txtStation.TextChanged += new System.EventHandler(this.txtElementText_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -459,7 +438,6 @@
         private System.Windows.Forms.TextBox txtEndstation;
         private System.Windows.Forms.ListBox lstStartstation;
         private System.Windows.Forms.ListBox lstEndstation;
-        private System.Windows.Forms.Button btnSuggestion;
         private System.Windows.Forms.DataGridView dgvOutput;
         private System.Windows.Forms.NumericUpDown nbrHour;
         private System.Windows.Forms.NumericUpDown nbrMinute;
@@ -483,7 +461,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.Button btnSuggestionsDeleteTab2;
-        private System.Windows.Forms.Button btnSuggestionStation;
     }
 }
 

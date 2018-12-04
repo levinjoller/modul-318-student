@@ -60,35 +60,80 @@ namespace OEV_Applikation
 
         }
 
-        private void BtnSuggestion_Click(object sender, EventArgs e)
+        private void txtElementText_SelectedIndexChanged(object sender, EventArgs e)
         {
             string startStation = txtStartstation.Text;
             string endStation = txtEndstation.Text;
 
             SwissTransport.Transport StationConnetions = new SwissTransport.Transport();
-            try
+
+            //Bestimmt von welcher Textbox aus ich die Daten eingebe, um Performace zu sparen
+            if (sender == txtStartstation)
             {
-                List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
-                List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
-
-                lstStartstation.Items.Clear();
-                lstEndstation.Items.Clear();
-
-                foreach (SwissTransport.Station station in start)
+                try
                 {
-                    lstStartstation.Items.Add(station.Name);
+                    List<SwissTransport.Station> start = StationConnetions.GetStations(startStation).StationList;
+
+                    lstStartstation.Items.Clear();
+
+                    foreach (SwissTransport.Station station in start)
+                    {
+                        if (station.Name != null)
+                        {
+                            lstStartstation.Items.Add(station.Name);
+                        }
+                    }
                 }
-
-                foreach (SwissTransport.Station station in end)
+                catch
                 {
-                    lstEndstation.Items.Add(station.Name);
+                    MessageConnectionError();
                 }
             }
-            catch
+            else if(sender == txtStation)
             {
-                MessageConnectionError();
-            }
+                string station = txtStation.Text;
 
+                SwissTransport.Transport stationConnetions = new SwissTransport.Transport();
+                try
+                {
+                    List<SwissTransport.Station> stationList = stationConnetions.GetStations(station).StationList;
+
+                    lstSuggestionsStation.Items.Clear();
+
+                    foreach (SwissTransport.Station oneStation in stationList)
+                    {
+                        if(oneStation.Name != null)
+                        {
+                            lstSuggestionsStation.Items.Add(oneStation.Name);
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageConnectionError();
+                }
+            }
+            else
+            {
+                try
+                {
+                    List<SwissTransport.Station> end = StationConnetions.GetStations(endStation).StationList;
+
+                    lstEndstation.Items.Clear();
+
+                    foreach (SwissTransport.Station station in end)
+                    {
+                        if (station.Name != null)
+                        {
+                            lstEndstation.Items.Add(station.Name);
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageConnectionError();
+                }
+            }
         }
 
         private void LstEndstation_Click(object sender, EventArgs e)
@@ -172,6 +217,8 @@ namespace OEV_Applikation
                     //Enthält das Objekt der Klasse Station, welches mit dem Namen und der Id der UsedStation übereinstimmt
                     SwissTransport.Station EntriesStation = StationConnetions.GetStationBoard(UsedStation.Name, UsedStation.Id).Station;
 
+                    dgvOutputStation.Rows.Clear();
+
                     if (EntriesConnections.Count != 0)
                     {
                         foreach (SwissTransport.StationBoard stationBoard in EntriesConnections)
@@ -227,26 +274,6 @@ namespace OEV_Applikation
         private void BtnSuggestionsDeleteTab2_Click(object sender, EventArgs e)
         {
             ClearAllTabTwo();
-        }
-
-        private void BtnSuggestionStation_Click(object sender, EventArgs e)
-        {
-            string station = txtStation.Text;
-
-            SwissTransport.Transport stationConnetions = new SwissTransport.Transport();
-            try
-            {
-                List<SwissTransport.Station> stationList = stationConnetions.GetStations(station).StationList;
-
-                foreach (SwissTransport.Station oneStation in stationList)
-                {
-                    lstSuggestionsStation.Items.Add(oneStation.Name);
-                }
-            }
-            catch
-            {
-                MessageConnectionError();
-            }
         }
 
         private void LstSuggestionsStation_Click(object sender, EventArgs e)
