@@ -187,7 +187,7 @@
             this.dgvOutput.Name = "dgvOutput";
             this.dgvOutput.ReadOnly = true;
             this.dgvOutput.RowTemplate.Height = 24;
-            this.dgvOutput.Size = new System.Drawing.Size(665, 196);
+            this.dgvOutput.Size = new System.Drawing.Size(751, 216);
             this.dgvOutput.TabIndex = 13;
             // 
             // StationName
@@ -363,11 +363,11 @@
             this.departure,
             this.vehicle,
             this.number});
-            this.dgvOutputStation.Location = new System.Drawing.Point(35, 250);
+            this.dgvOutputStation.Location = new System.Drawing.Point(19, 250);
             this.dgvOutputStation.Name = "dgvOutputStation";
             this.dgvOutputStation.ReadOnly = true;
             this.dgvOutputStation.RowTemplate.Height = 24;
-            this.dgvOutputStation.Size = new System.Drawing.Size(720, 248);
+            this.dgvOutputStation.Size = new System.Drawing.Size(753, 291);
             this.dgvOutputStation.TabIndex = 5;
             // 
             // StationFrom
